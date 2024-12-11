@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrashPool : MonoBehaviour
 {
-    private List<GameObject> trashPool;
+    private List<GameObject> trashPool = new();
     public int trashPoolSize;
     public GameObject trashPrefab;
 
@@ -26,7 +26,6 @@ public class TrashPool : MonoBehaviour
 
     private void Start()
     {
-        trashPool = new List<GameObject>();
         for (int i = 0; i < trashPoolSize; i++)
         {
             GameObject trash = Instantiate(trashPrefab);
@@ -36,7 +35,8 @@ public class TrashPool : MonoBehaviour
     }
     public GameObject GetTrash()
     {
-        foreach (var _trash in trashPool)
+        Debug.Log(trashPool);
+        foreach (GameObject _trash in trashPool)
         {
             if (!_trash.activeInHierarchy)
             {

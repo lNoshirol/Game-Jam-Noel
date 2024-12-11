@@ -7,7 +7,7 @@ using System.Net.Sockets;
 
 public class RandomScript : MonoBehaviour
 {
-    private PlayerMoove _pm;
+    private PlayerController _pm;
     private bool pcAssigned;
 
     [SerializeField] TextMeshProUGUI ipAddressText;
@@ -76,9 +76,9 @@ public class RandomScript : MonoBehaviour
     {
         if (_pm == null)
         {
-            _pm = FindObjectOfType<PlayerMoove>();
+            _pm = FindObjectOfType<PlayerController>();
         }
-        else if (_pm == FindObjectOfType<PlayerMoove>())
+        else if (_pm == FindObjectOfType<PlayerController>())
         {
             pcAssigned = true;
             CancelInvoke();

@@ -12,8 +12,12 @@ public class Trash : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        trashStock = collision.gameObject.transform.Find("TrashPosition");
+        if (collision.gameObject.GetComponent<PlayerController>().grabTrash) { Debug.Log("HALLOOO"); return; }
+        trashStock = collision.gameObject.transform.Find("TrashStock");
+        collision.gameObject.GetComponent<PlayerController>().grabTrash = true;
         GetTrash(trashStock);
+        
+
     }
 
     private void GetTrash(Transform trashStock)

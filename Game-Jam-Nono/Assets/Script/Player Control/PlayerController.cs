@@ -4,12 +4,18 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMoove : NetworkBehaviour
+public class PlayerController : NetworkBehaviour
 {
+    public bool grabTrash = false;
     [SerializeField] float _playerMoveSpeed;
 
     [SerializeField] Vector3 direction;
+    [SerializeField] float throwForce;
+    [SerializeField] GameObject trashStock;
 
+    private void Start()
+    {
+    }
     public void OnMove(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.started)
@@ -22,5 +28,14 @@ public class PlayerMoove : NetworkBehaviour
     {
         if (!IsOwner) { return; }
         transform.Translate(_playerMoveSpeed * Time.deltaTime * direction);
+    }
+
+    public void OnThrow(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.started && trashStock.transform.childCount > 0)
+        {
+            Debug.Log("hghjijhb");
+        }
+        
     }
 }
