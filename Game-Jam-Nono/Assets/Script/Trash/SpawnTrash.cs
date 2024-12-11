@@ -7,7 +7,6 @@ public class SpawnTrash : MonoBehaviour
 {
     [SerializeField] GameObject trashSpawnManager;
     [SerializeField] List<GameObject> trashSpawnList;
-    [SerializeField] GameObject trash;
     TrashPool trashPool;
     
 
