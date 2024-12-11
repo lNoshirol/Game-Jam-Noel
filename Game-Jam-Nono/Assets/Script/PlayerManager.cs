@@ -15,7 +15,9 @@ public class PlayerManager : MonoBehaviour
 
     public void AddPlayer(GameObject player)
     {
+        player.GetComponent<AssignPlayer>().playerID = _playersList.Count;
+        player.name = "Player " + (_playersList.Count+1);
         _playersList.Add(player);
-        player.GetComponent<AssignPlayer>().playerID = _playersList.Count - 1;
+        player.GetComponent<AssignPlayer>().Assign();
     }
 }
