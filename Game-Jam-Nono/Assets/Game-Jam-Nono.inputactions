@@ -266,7 +266,7 @@
                 {
                     "name": "",
                     "id": "919a5767-90da-460b-bde6-9ee3f7a17c12",
-                    "path": "",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -277,7 +277,7 @@
                 {
                     "name": "",
                     "id": "fff0cb19-6af7-4c74-9292-84797700ec53",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
