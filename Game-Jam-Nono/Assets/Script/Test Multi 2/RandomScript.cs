@@ -16,6 +16,8 @@ public class RandomScript : MonoBehaviour
     [SerializeField] string ipAddress;
     [SerializeField] UnityTransport transport;
 
+    [SerializeField] Camera _camera;
+
     void Start()
     {
         ipAddress = "0.0.0.0";
@@ -28,6 +30,7 @@ public class RandomScript : MonoBehaviour
     public void StartHost()
     {
         NetworkManager.Singleton.StartHost();
+        _camera.gameObject.SetActive(false);
         GetLocalIPAddress();
     }
 
@@ -36,6 +39,7 @@ public class RandomScript : MonoBehaviour
     {
         ipAddress = ip.text;
         SetIpAddress();
+        _camera.gameObject.SetActive(false);
         NetworkManager.Singleton.StartClient();
     }
 
@@ -48,10 +52,8 @@ public class RandomScript : MonoBehaviour
         var host = Dns.GetHostEntry(Dns.GetHostName());
         foreach (var ip in host.AddressList)
         {
-            Debug.Log("pitier marche");
             if (ip.AddressFamily == AddressFamily.InterNetwork)
             {
-                Debug.Log("MAAAAAAAAAARCHE");
                 ipAddressText.text = ip.ToString();
                 ipAddress = ip.ToString();
                 return ip.ToString();
