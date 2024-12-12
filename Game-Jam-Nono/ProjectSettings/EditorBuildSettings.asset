@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Pool qui pue.unity
+    guid: cb760cfb06c9293469a593289c399ac4
+  - enabled: 0
     path: Assets/Scenes/Test Multi Poubelle.unity
     guid: a13d8728efeaece439dc9908ee5a1b4c
   - enabled: 0
