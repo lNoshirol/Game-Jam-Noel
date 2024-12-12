@@ -44,6 +44,8 @@ public class PlayerController : NetworkBehaviour
 
     public void OnThrow(InputAction.CallbackContext callbackContext)
     {
+        if (!IsOwner) { return; }
+
         if (callbackContext.started && trashStock.transform.childCount > 0)
         {
             Rigidbody trashRB = trashStock.transform.GetChild(0).GetComponent<Rigidbody>();
