@@ -2463,6 +2463,10 @@ PrefabInstance:
       value: Player/Grab Object[/Mouse/leftButton]
       objectReference: {fileID: 0}
     - target: {fileID: 9190934085306577655, guid: b8748310a1b205b48bbfb35f039a0a5b, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190934085306577655, guid: b8748310a1b205b48bbfb35f039a0a5b, type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
@@ -2470,6 +2474,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 687975853}
+    - target: {fileID: 9190934085306577655, guid: b8748310a1b205b48bbfb35f039a0a5b, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9190934085306577655, guid: b8748310a1b205b48bbfb35f039a0a5b, type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnThrow
