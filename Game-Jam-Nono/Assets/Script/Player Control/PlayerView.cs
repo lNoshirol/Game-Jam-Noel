@@ -2,24 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.InputSystem;
 
 public class PlayerView : NetworkBehaviour
 {
-    [SerializeField] GameObject _player;
-    [SerializeField] Camera _camera;
-    [SerializeField] GameObject _cameraHolder;
+    [SerializeField] GameObject _jspCommentLappeler;
+
+    [SerializeField] Vector3 _direction;
+
+    public void OnLook(InputAction.CallbackContext callbackContext)
+    {
+        Vector2 value = callbackContext.ReadValue<Vector2>();
+
+        if (value == Vector2.zero) { return; }
+
+        _direction = new Vector3(value.x, 0, value.y);
+        
+    }
 
     private void Update()
     {
 
-        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-
-        RaycastHit hitInfo;
-        Physics.Raycast(ray, out hitInfo);
-        
-        if (hitInfo.collider != null)
-        {
-            _player.transform.LookAt(new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z));
-        }
+        Vector3 _lookHere = _jspCommentLappeler.transform.position + _direction;
+        _jspCommentLappeler.transform.LookAt(_lookHere);
     }
 }
