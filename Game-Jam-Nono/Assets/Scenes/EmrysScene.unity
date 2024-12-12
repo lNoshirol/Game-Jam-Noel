@@ -2463,6 +2463,10 @@ PrefabInstance:
       value: Player/Grab Object[/Mouse/leftButton]
       objectReference: {fileID: 0}
     - target: {fileID: 9190934085306577655, guid: b8748310a1b205b48bbfb35f039a0a5b, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190934085306577655, guid: b8748310a1b205b48bbfb35f039a0a5b, type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
@@ -2470,6 +2474,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 687975853}
+    - target: {fileID: 9190934085306577655, guid: b8748310a1b205b48bbfb35f039a0a5b, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9190934085306577655, guid: b8748310a1b205b48bbfb35f039a0a5b, type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnThrow
@@ -2681,7 +2689,7 @@ GameObject:
   - component: {fileID: 1142723088}
   m_Layer: 0
   m_Name: EboueursTrashZone
-  m_TagString: Untagged
+  m_TagString: Eboueur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2766,7 +2774,7 @@ Transform:
   m_GameObject: {fileID: 1142723083}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.94, y: 0.5, z: -12.98}
+  m_LocalPosition: {x: -12.94, y: -0.2, z: -12.98}
   m_LocalScale: {x: 4, y: 0.5, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2784,6 +2792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a274d2cda38d8ea4dbeeebcd56ff8071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eboueurTeamScore: {fileID: 0}
+  raccoonTeamScore: {fileID: 0}
 --- !u!1 &1185978423
 GameObject:
   m_ObjectHideFlags: 0
