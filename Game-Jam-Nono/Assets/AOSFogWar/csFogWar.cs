@@ -37,6 +37,15 @@ namespace FischlWorks_FogWar
         /// Empty spaces are stored as 0, while the obstacles are stored as 1.\n
         /// If a level is loaded instead of being scanned, 
         /// the level dimension properties of csFogWar will be replaced by the level data.
+        
+        public static csFogWar instance;
+        private void Awake()
+        {
+            instance = this;
+        }
+
+
+
         [System.Serializable]
         public class LevelData
         {
