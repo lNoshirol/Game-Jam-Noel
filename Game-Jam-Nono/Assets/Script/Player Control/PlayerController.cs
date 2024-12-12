@@ -34,8 +34,11 @@ public class PlayerController : NetworkBehaviour
     {
         if (callbackContext.started && trashStock.transform.childCount > 0)
         {
-            Debug.Log("hghjijhb");
+            Rigidbody trashRB = trashStock.transform.GetChild(0).GetComponent<Rigidbody>();
+            trashRB.constraints = RigidbodyConstraints.None;
+            trashRB.velocity = direction * 10;
+            trashStock.transform.DetachChildren();
+            grabTrash = false;
         }
-        
     }
 }
