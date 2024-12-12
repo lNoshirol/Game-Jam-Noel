@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1011961438
+  GlobalObjectIdHash: 263485677
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -571,13 +571,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5959947608959422398}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b662a4f024b128741988f6f021ab9f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabTrash: 0
   _playerMoveSpeed: 5
   direction: {x: 0, y: 0, z: 0}
+  throwForce: 0
+  trashStock: {fileID: 0}
 --- !u!114 &1228464902277920835
 MonoBehaviour:
   m_ObjectHideFlags: 0
