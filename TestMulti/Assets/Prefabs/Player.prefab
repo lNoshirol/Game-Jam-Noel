@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 661279325651093633}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.054, z: 0}
+  m_LocalPosition: {x: 0, y: 1.72, z: 0.619}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -167,13 +167,14 @@ Transform:
   m_GameObject: {fileID: 1695974245782209859}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1873276, y: -0.9576, z: 0.5800243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8373009595522595481}
   - {fileID: 7608577516943432044}
   - {fileID: 8696755265219559373}
+  - {fileID: 2433216746597629793}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6490988188554755073
@@ -265,10 +266,14 @@ MonoBehaviour:
   _componentIndexCache: 255
   _addedNetworkObject: {fileID: 4518036420622996078}
   _networkObjectCache: {fileID: 0}
+  raycastDistance: 5
   pickupLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   pickupPosition: {fileID: 8696755265219559373}
+  pickupButton: 323
+  dropButton: 324
+  body: {fileID: 7057293022326478219}
 --- !u!143 &2527171350756745059
 CharacterController:
   m_ObjectHideFlags: 0
@@ -361,6 +366,37 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.85, z: 0}
+--- !u!1 &7057293022326478219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2433216746597629793}
+  m_Layer: 0
+  m_Name: Raycast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2433216746597629793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7057293022326478219}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.156, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8414365000599903706}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7376412135758860590
 GameObject:
   m_ObjectHideFlags: 0
