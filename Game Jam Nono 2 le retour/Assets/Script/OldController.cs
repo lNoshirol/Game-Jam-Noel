@@ -5,7 +5,7 @@ using FishNet.Connection;
 using FishNet.Object;
 
 //This is made by Bobsi Unity - Youtube
-public class PlayerController : NetworkBehaviour
+public class OldController : NetworkBehaviour
 {
     [Header("Base setup")]
     public float walkingSpeed = 7.5f;
@@ -38,7 +38,7 @@ public class PlayerController : NetworkBehaviour
         }
         else
         {
-            gameObject.GetComponent<PlayerController>().enabled = false;
+            gameObject.GetComponent<OldController>().enabled = false;
         }
     }
 
