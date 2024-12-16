@@ -387,6 +387,10 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 0}
   points: 0
   ownerID: 0
+  score: 0
+  racconMat: {fileID: 2100000, guid: f7a89a143bf65e54c8b4b38075854e20, type: 2}
+  eboueurMat: {fileID: 2100000, guid: 5107245e065813f47a488155b600daa2, type: 2}
+  body: {fileID: 7376412135758860590}
 --- !u!114 &7255491734591667317
 MonoBehaviour:
   m_ObjectHideFlags: 0
