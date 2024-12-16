@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 
-//This script is made by Bobsi Unity for Youtube
 public class PlayerPickup : NetworkBehaviour
 {
     [SerializeField] float raycastDistance;
@@ -32,7 +31,6 @@ public class PlayerPickup : NetworkBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(pickupButton))
-            
             Pickup();
 
         if (Input.GetKeyDown(dropButton))
@@ -41,28 +39,36 @@ public class PlayerPickup : NetworkBehaviour
 
     void Pickup()
     {
-        // Draw the raycast in the scene view for debugging
-        Debug.DrawRay(body.transform.position, body.transform.forward * raycastDistance, Color.green, 0.1f);
-
         if (Physics.Raycast(body.transform.position, body.transform.forward, out RaycastHit hit, raycastDistance, pickupLayer))
         {
             if (!hasObjectInHand)
             {
-                SetObjectInHandServer(hit.transform.gameObject, pickupPosition.position, pickupPosition.rotation, gameObject);
                 objInHand = hit.transform.gameObject;
-                hasObjectInHand = true;
-            }
-            else if (hasObjectInHand)
-            {
-                Drop();
 
-                SetObjectInHandServer(hit.transform.gameObject, pickupPosition.position, pickupPosition.rotation, gameObject);
-                objInHand = hit.transform.gameObject;
+                // Ensure the trash object is getting the correct owner
+                Trash trash = objInHand.GetComponent<Trash>();
+                if (trash != null)
+                {
+                    PlayerScore playerPoints = GetComponent<PlayerScore>();
+                    trash.SetOwner(playerPoints); // Assign PlayerPoints to trash
+                    Debug.Log($"Player {playerPoints.ownerID} picked up trash.");
+                }
+
+                SetObjectInHandServer(objInHand, pickupPosition.position, pickupPosition.rotation, gameObject);
                 hasObjectInHand = true;
             }
         }
     }
 
+    void Drop()
+    {
+        if (!hasObjectInHand)
+            return;
+
+        DropObjectServer(objInHand, worldObjectHolder);
+        hasObjectInHand = false;
+        objInHand = null;
+    }
 
     [ServerRpc(RequireOwnership = false)]
     void SetObjectInHandServer(GameObject obj, Vector3 position, Quaternion rotation, GameObject player)
@@ -79,16 +85,6 @@ public class PlayerPickup : NetworkBehaviour
 
         if (obj.GetComponent<Rigidbody>() != null)
             obj.GetComponent<Rigidbody>().isKinematic = true;
-    }
-
-    void Drop()
-    {
-        if (!hasObjectInHand)
-            return;
-
-        DropObjectServer(objInHand, worldObjectHolder);
-        hasObjectInHand = false;
-        objInHand = null;
     }
 
     [ServerRpc(RequireOwnership = false)]
