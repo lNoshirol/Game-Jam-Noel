@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using FishNet.Connection;
 using FishNet.Object;
+using System.Threading.Tasks;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -21,8 +22,10 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField] bool _playerIsUsingJoystick;
 
-    private void Start()
+    private async void Start()
     {
+        await Task.Delay(100);
+
         _moveSpeed = _baseMoveSpeed;
 
         _playerCamera = Camera.main;
@@ -78,7 +81,7 @@ public class PlayerController : NetworkBehaviour
         transform.position += Time.deltaTime * _moveSpeed * _direction;
 
         //look Controller
-        if (_direction != Vector3.zero || _playerIsUsingJoystick)
+        if (_playerIsUsingJoystick)
         {
             Cursor.lockState = CursorLockMode.Locked;
 
@@ -99,9 +102,15 @@ public class PlayerController : NetworkBehaviour
                 {
                     Vector3 _mouseLookDirection = hit.point;
                     _mouseLookDirection.y = transform.position.y;
+                    _lookDirection = _mouseLookDirection;
                     _jspCommentLappeler.transform.LookAt(_mouseLookDirection);
                 }
             }
         }
+    }
+
+    public Vector3 GetDirection()
+    {
+        return _lookDirection;
     }
 }

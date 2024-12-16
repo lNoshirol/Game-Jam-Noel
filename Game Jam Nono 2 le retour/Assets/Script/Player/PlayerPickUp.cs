@@ -76,7 +76,7 @@ public class PlayerPickUp : NetworkBehaviour
             obj.GetComponent<Rigidbody>().isKinematic = true;
     }
 
-    public void Drop(InputAction.CallbackContext callbackContext)
+    public void OnDrop(InputAction.CallbackContext callbackContext)
     {
         if (!callbackContext.started) { return; }
 
@@ -106,5 +106,10 @@ public class PlayerPickUp : NetworkBehaviour
 
         if (obj.GetComponent<Rigidbody>() != null)
             obj.GetComponent<Rigidbody>().isKinematic = false;
+
+        PlayerController _pc = GetComponent<PlayerController>();
+        Vector3 LANCE = new Vector3(_pc.GetDirection().x * 400, 3, _pc.GetDirection().z * 400);
+
+        obj.GetComponent<Rigidbody>().AddForce(LANCE);
     }
 }
