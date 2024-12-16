@@ -15,6 +15,8 @@ public class OldController : NetworkBehaviour
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
 
+    [SerializeField] private Canvas playerCanvas;
+
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
@@ -26,18 +28,19 @@ public class OldController : NetworkBehaviour
     private float cameraYOffset = 0.4f;
     private Camera playerCamera;
 
-
     public override void OnStartClient()
     {
         base.OnStartClient();
         if (base.IsOwner)
         {
             playerCamera = Camera.main;
+            playerCanvas.gameObject.SetActive(true);
             //playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z);
             //playerCamera.transform.SetParent(transform);
         }
         else
         {
+            playerCanvas.gameObject.SetActive(false);
             gameObject.GetComponent<OldController>().enabled = false;
         }
     }
@@ -93,4 +96,5 @@ public class OldController : NetworkBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
     }
+
 }
