@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Trash
   - WorldObjects
-  - Raccon
   - Eboueur
+  - Raccoon
   layers:
   - Default
   - TransparentFX

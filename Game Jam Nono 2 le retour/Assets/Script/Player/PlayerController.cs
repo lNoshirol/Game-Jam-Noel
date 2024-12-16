@@ -21,6 +21,9 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField] bool _playerIsUsingJoystick;
 
+    public bool isPlayerOwner;
+    public int Id;
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -97,6 +100,7 @@ public class PlayerController : NetworkBehaviour
                     _mouseLookDirection.y = transform.position.y;
                     _lookDirection = _mouseLookDirection;
                     _jspCommentLappeler.transform.LookAt(_mouseLookDirection);
+                    _lookDirection -= transform.position;
                 }
             }
         }
