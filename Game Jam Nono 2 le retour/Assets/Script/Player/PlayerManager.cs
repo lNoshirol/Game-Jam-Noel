@@ -97,13 +97,13 @@ public class PlayerManager : NetworkBehaviour
         if (player.GetComponent<NetworkObject>().Owner.ClientId % 2 == 0)
         {
             player.tag = "Raccoon";
-            player.GetComponent<MeshRenderer>().material = racconMat;
+            
         }
 
         else
         {
             player.tag = "Eboueur";
-            player.GetComponent<MeshRenderer>().material = eboueurMat;
+            
         }
             
     }
