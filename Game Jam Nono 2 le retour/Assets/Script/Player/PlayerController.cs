@@ -8,8 +8,6 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField] GameObject _jspCommentLappeler;
 
-
-
     [SerializeField] float _baseMoveSpeed;
     [SerializeField] float _moveSpeed;
 
@@ -20,6 +18,8 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] GameObject _cameraHolder;
 
     [SerializeField] bool _playerIsUsingJoystick;
+
+    private int PlayerScore { get; set; }
 
     private void Start()
     {
@@ -104,4 +104,5 @@ public class PlayerController : NetworkBehaviour
             }
         }
     }
+
 }
