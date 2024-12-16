@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using FishNet.Connection;
 using FishNet.Object;
-using UnityEditor.UIElements;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -60,11 +59,11 @@ public class PlayerController : NetworkBehaviour
         {
             _playerIsUsingJoystick = false;
         }
-        
+
         if (value == Vector2.zero) { return; }
 
         _lookDirection = new Vector3(value.x, 0, value.y);
-        
+
     }
 
     public void OnMove(InputAction.CallbackContext callbackContext)
