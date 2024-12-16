@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using FishNet.Connection;
 using FishNet.Object;
-using System.Threading.Tasks;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -22,25 +21,16 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField] bool _playerIsUsingJoystick;
 
-    private async void Start()
-    {
-        await Task.Delay(100);
-
-        _moveSpeed = _baseMoveSpeed;
-
-        _playerCamera = Camera.main;
-        _playerCamera.transform.SetParent(_cameraHolder.transform);
-        _playerCamera.transform.position = _cameraHolder.transform.position;
-    }
-
     public override void OnStartClient()
     {
         base.OnStartClient();
         if (base.IsOwner)
         {
+            _moveSpeed = _baseMoveSpeed;
+
             _playerCamera = Camera.main;
-            _playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             _playerCamera.transform.SetParent(_cameraHolder.transform);
+            _playerCamera.transform.position = _cameraHolder.transform.position;
         }
         else
         {
@@ -77,6 +67,7 @@ public class PlayerController : NetworkBehaviour
 
     private void Update()
     {
+
         //Move
         transform.position += Time.deltaTime * _moveSpeed * _direction;
 
@@ -95,6 +86,8 @@ public class PlayerController : NetworkBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Physics.Raycast(ray, out hit);
+
+
 
             if (hit.collider != null)
             {

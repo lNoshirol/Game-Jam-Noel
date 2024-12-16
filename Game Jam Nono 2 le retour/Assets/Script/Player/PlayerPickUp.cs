@@ -4,6 +4,7 @@ using UnityEngine;
 using FishNet.Object;
 using UnityEngine.Rendering;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class PlayerPickUp : NetworkBehaviour
 {
@@ -50,7 +51,7 @@ public class PlayerPickUp : NetworkBehaviour
             }
             else if (hasObjectInHand)
             {
-                Drop();
+                Drop(false);
 
                 SetObjectInHandServer(hit.transform.gameObject, pickupPosition.position, pickupPosition.rotation, gameObject);
                 objInHand = hit.transform.gameObject;
@@ -80,36 +81,38 @@ public class PlayerPickUp : NetworkBehaviour
     {
         if (!callbackContext.started) { return; }
 
-        Drop();
+        Drop(true);
     }
 
-    void Drop()
+    void Drop(bool IsThrowing)
     {
         if (!hasObjectInHand)
             return;
 
-        DropObjectServer(objInHand, objectHolder);
+        DropObjectServer(objInHand, objectHolder, IsThrowing);
         hasObjectInHand = false;
         objInHand = null;
     }
 
     [ServerRpc(RequireOwnership = false)]
-    void DropObjectServer(GameObject obj, Transform worldHolder)
+    void DropObjectServer(GameObject obj, Transform worldHolder, bool IsThrowing)
     {
-        DropObjectObserver(obj, worldHolder);
+        DropObjectObserver(obj, worldHolder, IsThrowing);
     }
 
     [ObserversRpc]
-    void DropObjectObserver(GameObject obj, Transform worldHolder)
+    void DropObjectObserver(GameObject obj, Transform worldHolder, bool IsThrowing)
     {
         obj.transform.parent = worldHolder;
 
         if (obj.GetComponent<Rigidbody>() != null)
             obj.GetComponent<Rigidbody>().isKinematic = false;
 
-        PlayerController _pc = GetComponent<PlayerController>();
-        Vector3 LANCE = new Vector3(_pc.GetDirection().x * 400, 3, _pc.GetDirection().z * 400);
-
-        obj.GetComponent<Rigidbody>().AddForce(LANCE);
+        if (IsThrowing)
+        {
+            PlayerController _pc = GetComponent<PlayerController>();
+            Vector3 LANCE = new Vector3(_pc.GetDirection().x * 400, 3, _pc.GetDirection().z * 400);
+            obj.GetComponent<Rigidbody>().AddForce(LANCE);
+        }
     }
 }

@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/ROYAUME DES AVIONS.unity
+    guid: a1d0e2865c6bb754a89bbd3538f6835b
   m_configObjects: {}
