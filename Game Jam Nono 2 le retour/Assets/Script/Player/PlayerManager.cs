@@ -89,6 +89,14 @@ public class PlayerManager : NetworkBehaviour
         Debug.Log($"[Client] Player {clientID} score updated to {newScore}");
     }
 
+    void AssignTeam(GameObject player)
+    {
+        if (player.GetComponent<NetworkObject>().Owner.ClientId % 2 == 0)
+            player.tag = "Raccoon";
+        else
+            player.tag = "Eboueur";
+    }
+
     // Player data structure
     private class Player
     {

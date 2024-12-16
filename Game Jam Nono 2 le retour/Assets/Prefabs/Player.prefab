@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 7255491734591667317}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Eboueur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00dc6f15a7c98f47abf4e7c25ad09d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 6963553870545041024}
+  playerScoreText: {fileID: 6963553870545041024}
 --- !u!1 &3029874426563853409
 GameObject:
   m_ObjectHideFlags: 0

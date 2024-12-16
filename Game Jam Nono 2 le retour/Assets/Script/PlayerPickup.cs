@@ -45,12 +45,12 @@ public class PlayerPickup : NetworkBehaviour
             {
                 objInHand = hit.transform.gameObject;
 
-                // Ensure the trash object is getting the correct owner
                 Trash trash = objInHand.GetComponent<Trash>();
                 if (trash != null)
                 {
                     PlayerScore playerPoints = GetComponent<PlayerScore>();
-                    trash.SetOwner(playerPoints); // Assign PlayerPoints to trash
+                    trash.SetOwner(playerPoints); // Associate the trash with the player's score
+                    trash.ownerTag = gameObject.tag;
                     Debug.Log($"Player {playerPoints.ownerID} picked up trash.");
                 }
 
@@ -59,6 +59,7 @@ public class PlayerPickup : NetworkBehaviour
             }
         }
     }
+
 
     void Drop()
     {
