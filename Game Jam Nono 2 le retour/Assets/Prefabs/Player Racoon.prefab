@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7927104339575673701}
   - component: {fileID: 9084107882544418656}
   - component: {fileID: 994025918149920928}
-  - component: {fileID: 5002401235553906425}
   - component: {fileID: 470674171741066917}
   - component: {fileID: 1724997120300396824}
   - component: {fileID: 5764083740626568211}
@@ -64,6 +63,8 @@ MonoBehaviour:
   _playerCamera: {fileID: 0}
   _cameraHolder: {fileID: 9185880907482296883}
   _playerIsUsingJoystick: 0
+  isPlayerOwner: 0
+  Id: 0
 --- !u!114 &994025918149920928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,27 +86,6 @@ MonoBehaviour:
     m_Bits: 64
   pickupPosition: {fileID: 8879144238414003884}
   body: {fileID: 2678153539426280574}
---- !u!65 &5002401235553906425
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2416948575582286142}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 0.8295808, y: 1, z: 1.582473}
-  m_Center: {x: 0.008520961, y: 0, z: 0.20876348}
 --- !u!54 &470674171741066917
 Rigidbody:
   m_ObjectHideFlags: 0

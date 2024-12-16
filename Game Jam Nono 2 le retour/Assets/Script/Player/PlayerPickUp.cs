@@ -39,7 +39,9 @@ public class PlayerPickUp : NetworkBehaviour
     void Grab()
     {
         // Draw the raycast in the scene view for debugging
-        Debug.DrawRay(body.transform.position, body.transform.forward * raycastDistance, Color.green, 0.1f);
+        /*Physics.BoxCast(body.transform.forward, new Vector3(1, 1, 3), body.transform.forward);
+        Physics.box*/
+
 
         if (Physics.Raycast(body.transform.position, body.transform.forward, out RaycastHit hit, raycastDistance, pickupLayer))
         {
