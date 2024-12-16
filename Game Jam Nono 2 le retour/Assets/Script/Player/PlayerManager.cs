@@ -9,6 +9,9 @@ public class PlayerManager : NetworkBehaviour
     // Dictionary to store players by ClientID
     private Dictionary<int, Player> _players = new Dictionary<int, Player>();
 
+    [SerializeField] Material racconMat;
+    [SerializeField] Material eboueurMat;
+
     private void Awake()
     {
         // Set the instance to this script on the server
@@ -92,9 +95,17 @@ public class PlayerManager : NetworkBehaviour
     void AssignTeam(GameObject player)
     {
         if (player.GetComponent<NetworkObject>().Owner.ClientId % 2 == 0)
+        {
             player.tag = "Raccoon";
+            player.GetComponent<MeshRenderer>().material = racconMat;
+        }
+
         else
+        {
             player.tag = "Eboueur";
+            player.GetComponent<MeshRenderer>().material = eboueurMat;
+        }
+            
     }
 
     // Player data structure

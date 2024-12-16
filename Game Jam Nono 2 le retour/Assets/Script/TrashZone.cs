@@ -19,6 +19,7 @@ public class TrashZone : NetworkBehaviour
                     playerPoints.AddPoints(); // Add points to the player
                     TeamManager.Instance.AddScoreToTeamServer(trash.ownerTag, 1); ; // Add points to the team
                     Debug.Log($"Player {playerPoints.ownerID} scored!");
+
                 }
             }
         }
