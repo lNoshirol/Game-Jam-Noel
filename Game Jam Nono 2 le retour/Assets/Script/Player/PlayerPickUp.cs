@@ -13,6 +13,10 @@ public class PlayerPickUp : NetworkBehaviour
     [SerializeField] Transform pickupPosition;
     [SerializeField] GameObject body;
 
+    [SerializeField] float stunDuration = 10f; // Stun time in seconds
+
+    public bool isStunned = false; // To block actions during stun
+
     Camera cam;
     bool hasObjectInHand;
     GameObject objInHand;
@@ -34,6 +38,7 @@ public class PlayerPickUp : NetworkBehaviour
         if (!callbackContext.started) { return; }
         
         Grab();
+
     }
 
     void Grab()
@@ -45,6 +50,15 @@ public class PlayerPickUp : NetworkBehaviour
 
         if (Physics.Raycast(body.transform.position, body.transform.forward, out RaycastHit hit, raycastDistance, pickupLayer))
         {
+
+            PlayerPickUp hitPlayer = hit.transform.GetComponent<PlayerPickUp>();
+            if (hitPlayer != null)
+            {
+                Debug.Log($"Player {hitPlayer.name} is stunned!");
+                StunPlayerServer(hitPlayer.gameObject);
+                return;
+            }
+
             if (!hasObjectInHand)
             {
                 SetObjectInHandServer(hit.transform.gameObject, pickupPosition.position, pickupPosition.rotation, gameObject);
@@ -60,6 +74,46 @@ public class PlayerPickUp : NetworkBehaviour
                 hasObjectInHand = true;
             }
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void StunPlayerServer(GameObject player)
+    {
+        StunPlayerObservers(player);
+    }
+
+    [ObserversRpc]
+    void StunPlayerObservers(GameObject player)
+    {
+        PlayerPickUp playerPickup = player.GetComponent<PlayerPickUp>();
+        if (playerPickup != null)
+        {
+            playerPickup.ApplyStun();
+        }
+    }
+
+    void ApplyStun()
+    {
+        if (isStunned) return; // Prevent reapplying the stun
+
+        // Drop the object if the player has one in hand
+        if (hasObjectInHand)
+        {
+            Drop(false); // Ensure the item is dropped when stunned
+        }
+
+        StartCoroutine(StunRoutine());
+    }
+
+    private IEnumerator StunRoutine()
+    {
+        isStunned = true; // Block player actions
+        Debug.Log($"{gameObject.name} is stunned for {stunDuration} seconds!");
+
+        yield return new WaitForSeconds(stunDuration);
+
+        isStunned = false; // Re-enable player actions
+        Debug.Log($"{gameObject.name} is no longer stunned!");
     }
 
     [ServerRpc(RequireOwnership = false)]
