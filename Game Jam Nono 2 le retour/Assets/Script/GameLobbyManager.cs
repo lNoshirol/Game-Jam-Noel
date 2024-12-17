@@ -1,7 +1,7 @@
 using UnityEngine;
 using FishNet.Object;
 
-public class GameManager : NetworkBehaviour
+public class GameLobbyManager : NetworkBehaviour
 {
     private float _endTime;
     private bool _isCountingDown = false;

@@ -1,9 +1,9 @@
 using UnityEngine;
 using FishNet.Object;
 
-public class GameStarter : NetworkBehaviour
+public class GameLobbyStarter : NetworkBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private GameLobbyManager _gameManager;
 
     [Server]
     private void Start()
