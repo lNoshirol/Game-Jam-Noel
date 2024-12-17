@@ -51,7 +51,8 @@ public class PlayerScore : NetworkBehaviour
 
         // Assign tag and set material color on the server
         gameObject.tag = teamTag;
-        body.GetComponent<MeshRenderer>().material.color = teamColor;
+
+        //body.GetComponent<MeshRenderer>().material.color = teamColor;
 
         // Notify all clients to update their visuals
         UpdateTeamOnClients(teamTag, teamColor);
@@ -62,7 +63,7 @@ public class PlayerScore : NetworkBehaviour
     {
         // Update the tag and material color on all clients
         gameObject.tag = teamTag;
-        body.GetComponent<MeshRenderer>().material.color = teamColor;
+        //body.GetComponent<MeshRenderer>().material.color = teamColor;
     }
 
     // Add points to the player's score

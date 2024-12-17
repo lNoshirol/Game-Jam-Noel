@@ -34,6 +34,7 @@ public class PlayerController : NetworkBehaviour
             _playerCamera = Camera.main;
             _playerCamera.transform.SetParent(_cameraHolder.transform);
             _playerCamera.transform.position = _cameraHolder.transform.position;
+            _playerCamera.transform.rotation = _cameraHolder.transform.rotation;
         }
         else
         {
