@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using FischlWorks_FogWar;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,11 +10,21 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField] Vector3 direction;
     [SerializeField] float throwForce;
-    [SerializeField] GameObject trashStock;
+    public GameObject trashStock;
+
+    [SerializeField] GameObject racoon;
 
     private void Start()
     {
+        if (!IsOwner) { return; }
+
+        gameObject.transform.position = PLAYERSPAWNINSTANCE.instance.transform.position;
+
+        csFogWar.instance.AddFogRevealer(new csFogWar.FogRevealer(transform, 6, false));
+
+        //csFogWar.instance._FogRevealers[0]._RevealerTransform = transform;
     }
+
     public void OnMove(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.started)
@@ -28,10 +37,15 @@ public class PlayerController : NetworkBehaviour
     {
         if (!IsOwner) { return; }
         transform.Translate(_playerMoveSpeed * Time.deltaTime * direction);
+
+        Vector3 _lookHere = transform.position + direction;
+        racoon.transform.LookAt(_lookHere);
     }
 
     public void OnThrow(InputAction.CallbackContext callbackContext)
     {
+        if (!IsOwner) { return; }
+
         if (callbackContext.started && trashStock.transform.childCount > 0)
         {
             Rigidbody trashRB = trashStock.transform.GetChild(0).GetComponent<Rigidbody>();

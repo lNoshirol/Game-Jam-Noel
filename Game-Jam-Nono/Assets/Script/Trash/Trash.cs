@@ -6,17 +6,19 @@ using UnityEngine;
 public class Trash : MonoBehaviour
 {
     Transform trashStock;
+    public GameObject lastPlayer;
     private void Start()
     {
         
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.GetComponent<PlayerController>() == null) { Debug.Log("Y A RIEEEEEEEEEEN"); return; }
         if (collision.gameObject.GetComponent<PlayerController>().grabTrash) { Debug.Log("HALLOOO"); return; }
-        trashStock = collision.gameObject.transform.Find("TrashStock");
+        trashStock = collision.gameObject.GetComponent<PlayerController>().trashStock.transform;
         collision.gameObject.GetComponent<PlayerController>().grabTrash = true;
+        lastPlayer = collision.gameObject;
         GetTrash(trashStock);
-
     }
 
     private void GetTrash(Transform trashStock)
