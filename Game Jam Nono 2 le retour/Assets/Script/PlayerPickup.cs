@@ -1,21 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 
 public class PlayerPickup : NetworkBehaviour
 {
-    [SerializeField] float raycastDistance;
+    [SerializeField] float raycastDistance = 5f; // Raycast range
     [SerializeField] LayerMask pickupLayer;
     [SerializeField] Transform pickupPosition;
     [SerializeField] KeyCode pickupButton = KeyCode.Mouse0;
     [SerializeField] KeyCode dropButton = KeyCode.Mouse1;
     [SerializeField] GameObject body;
+    [SerializeField] float stunDuration = 10f; // Stun time in seconds
 
-    Camera cam;
-    bool hasObjectInHand;
-    GameObject objInHand;
-    Transform worldObjectHolder;
+    private bool isStunned = false; // To block actions during stun
+    private Camera cam;
+    private bool hasObjectInHand;
+    private GameObject objInHand;
+    private Transform worldObjectHolder;
 
     public override void OnStartClient()
     {
@@ -30,17 +31,32 @@ public class PlayerPickup : NetworkBehaviour
 
     private void Update()
     {
+        if (isStunned) return; // Block all input if stunned
+
         if (Input.GetKeyDown(pickupButton))
-            Pickup();
+            AttemptPickupOrStun();
 
         if (Input.GetKeyDown(dropButton))
             Drop();
     }
 
-    void Pickup()
+    void AttemptPickupOrStun()
     {
+        // Perform the raycast
         if (Physics.Raycast(body.transform.position, body.transform.forward, out RaycastHit hit, raycastDistance, pickupLayer))
         {
+            Debug.DrawRay(body.transform.position, body.transform.forward * raycastDistance, Color.red, 1f);
+
+            // Check if the raycast hit another player
+            PlayerPickup hitPlayer = hit.transform.GetComponent<PlayerPickup>();
+            if (hitPlayer != null)
+            {
+                Debug.Log($"Player {hitPlayer.name} is stunned!");
+                StunPlayerServer(hitPlayer.gameObject);
+                return;
+            }
+
+            // Otherwise, handle the pickup
             if (!hasObjectInHand)
             {
                 objInHand = hit.transform.gameObject;
@@ -60,6 +76,45 @@ public class PlayerPickup : NetworkBehaviour
         }
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    void StunPlayerServer(GameObject player)
+    {
+        StunPlayerObservers(player);
+    }
+
+    [ObserversRpc]
+    void StunPlayerObservers(GameObject player)
+    {
+        PlayerPickup playerPickup = player.GetComponent<PlayerPickup>();
+        if (playerPickup != null)
+        {
+            playerPickup.ApplyStun();
+        }
+    }
+
+    void ApplyStun()
+    {
+        if (isStunned) return; // Prevent reapplying the stun
+
+        // Drop the object if the player has one in hand
+        if (hasObjectInHand)
+        {
+            Drop(); // Ensure the item is dropped when stunned
+        }
+
+        StartCoroutine(StunRoutine());
+    }
+
+    private IEnumerator StunRoutine()
+    {
+        isStunned = true; // Block player actions
+        Debug.Log($"{gameObject.name} is stunned for {stunDuration} seconds!");
+
+        yield return new WaitForSeconds(stunDuration);
+
+        isStunned = false; // Re-enable player actions
+        Debug.Log($"{gameObject.name} is no longer stunned!");
+    }
 
     void Drop()
     {
