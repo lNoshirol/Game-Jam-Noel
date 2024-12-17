@@ -2820,12 +2820,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dontRoute: 0
   _unreliableMtu: 1023
-  _ipv4BindAddress: 
+  _ipv4BindAddress: 0.0.0.0
   _enableIpv6: 1
   _ipv6BindAddress: 
   _port: 7770
   _maximumClients: 4095
-  _clientAddress: localHost
+  _clientAddress: 192.168.194.129
 --- !u!1 &1924014777
 GameObject:
   m_ObjectHideFlags: 0
