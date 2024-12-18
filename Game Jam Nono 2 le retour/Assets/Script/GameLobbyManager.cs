@@ -6,6 +6,8 @@ public class GameLobbyManager : NetworkBehaviour
     private float _endTime;
     private bool _isCountingDown = false;
 
+    public GameObject AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAh;
+
     public float CountdownTime { get; private set; } // Expose remaining time to clients
 
     private void Update()
