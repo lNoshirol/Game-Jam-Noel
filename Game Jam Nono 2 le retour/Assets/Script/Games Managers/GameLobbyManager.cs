@@ -7,6 +7,9 @@ public class GameLobbyManager : NetworkBehaviour
     private bool _isCountingDown = false;
 
     public GameObject AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAh;
+    public GameObject AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAh2;
+
+    public bool isInGame;
 
     public float CountdownTime { get; private set; } // Expose remaining time to clients
 
@@ -43,7 +46,21 @@ public class GameLobbyManager : NetworkBehaviour
 
     private void OnCountdownFinished()
     {
-        Debug.Log("Countdown finished!");
-        // Add logic for what happens when the timer reaches zero
+        if (!isInGame)
+        {
+            isInGame = true;
+            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAh2.SetActive(true);
+            GetComponent<GameLobbyStarter>()._countDown = 240;
+            GetComponent<GameLobbyStarter>().Start();
+            Debug.Log("Game Start !");
+        }
+        else
+        {
+            Debug.Log("Game Is End");
+        }
+        
+        /*AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAh2.SetActive(true);
+        gameManager.SetActive(true);
+        gameObject.SetActive(false);*/
     }
 }
