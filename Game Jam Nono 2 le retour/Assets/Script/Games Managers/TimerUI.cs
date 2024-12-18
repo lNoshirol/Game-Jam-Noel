@@ -5,13 +5,13 @@ using UnityEngine.UI;
 public class LobbyCountdownUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _countdownText; // Reference to a UI Text element
-    [SerializeField] private GameLobbyManager _gameManager;
+    public GameLobbyManager _gameLobbyManager;
 
     private void Update()
     {
-        if (_gameManager == null) return;
+        if (_gameLobbyManager == null) return;
 
-        float timer = _gameManager.CountdownTime;
+        float timer = _gameLobbyManager.CountdownTime;
         _countdownText.text = FormatTime(timer);
     }
 
@@ -22,4 +22,3 @@ public class LobbyCountdownUI : MonoBehaviour
         return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
-
