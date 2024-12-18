@@ -63,7 +63,7 @@ public class PlayerPickUp : NetworkBehaviour
             {
                 objInHand = hit.transform.gameObject;
                 Trash trash = objInHand.GetComponent<Trash>();
-                PlayerScore playerPoints = GetComponent<PlayerScore>();
+                PlayerSetUp playerPoints = GetComponent<PlayerSetUp>();
                 trash.SetOwner(playerPoints);
                 trash.ownerTag = gameObject.tag;
                 Debug.Log($"Player {playerPoints.ownerID} picked up trash.");
@@ -115,11 +115,13 @@ public class PlayerPickUp : NetworkBehaviour
     {
         isStunned = true; // Block player actions
         player.GetComponent<PlayerController>()._moveSpeed = 0;
+        player.GetComponent<PlayerController>()._body.transform.Rotate(0, 0, 180);
         Debug.Log($"{gameObject.name} is stunned for {stunDuration} seconds!");
 
         yield return new WaitForSeconds(stunDuration);
 
         isStunned = false; // Re-enable player actions
+        player.GetComponent<PlayerController>()._body.transform.Rotate(0, 0, 180);
         player.GetComponent<PlayerController>()._moveSpeed = player.GetComponent<PlayerController>()._baseMoveSpeed;
         Debug.Log($"{gameObject.name} is no longer stunned!");
     }

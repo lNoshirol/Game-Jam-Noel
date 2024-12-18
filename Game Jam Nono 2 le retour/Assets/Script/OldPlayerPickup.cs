@@ -64,7 +64,7 @@ public class OldPlayerPickup : NetworkBehaviour
                 Trash trash = objInHand.GetComponent<Trash>();
                 if (trash != null)
                 {
-                    PlayerScore playerPoints = GetComponent<PlayerScore>();
+                    PlayerSetUp playerPoints = GetComponent<PlayerSetUp>();
                     trash.SetOwner(playerPoints); // Associate the trash with the player's score
                     trash.ownerTag = gameObject.tag;
                     Debug.Log($"Player {playerPoints.ownerID} picked up trash.");

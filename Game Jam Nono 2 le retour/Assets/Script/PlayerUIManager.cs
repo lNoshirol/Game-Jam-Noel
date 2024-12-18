@@ -5,7 +5,7 @@ using FishNet.Object;  // If you're using TextMeshPro, otherwise use UnityEngine
 public class PlayerUIManager : NetworkBehaviour
 {
     [SerializeField] private TextMeshProUGUI playerScoreText;  // Reference to the UI Text component
-    private PlayerScore playerPoints;
+    private PlayerSetUp playerPoints;
 
     public override void OnStartClient()
     {
@@ -18,13 +18,13 @@ public class PlayerUIManager : NetworkBehaviour
     void Start()
     {
 
-        playerPoints = GetComponent<PlayerScore>();
+        playerPoints = GetComponent<PlayerSetUp>();
         if (playerScoreText != null && playerPoints != null)
         {
             UpdateScoreText();
         }
         // Get the PlayerPoints script attached to the player
-        playerPoints = GetComponent<PlayerScore>();
+        playerPoints = GetComponent<PlayerSetUp>();
 
         if (playerScoreText != null && playerPoints != null)
         {

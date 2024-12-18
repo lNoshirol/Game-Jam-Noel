@@ -40,7 +40,6 @@ Transform:
   - {fileID: 8596322955222889134}
   - {fileID: 5217072797619119204}
   - {fileID: 6906901885210457406}
-  - {fileID: 8879144238414003884}
   - {fileID: 322313352720740980}
   - {fileID: 6112263160561891916}
   m_Father: {fileID: 0}
@@ -60,7 +59,7 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1724997120300396824}
   _networkObjectCache: {fileID: 1724997120300396824}
-  _jspCommentLappeler: {fileID: 2678153539426280574}
+  _body: {fileID: 2678153539426280574}
   _baseMoveSpeed: 5
   _moveSpeed: 0
   _direction: {x: 0, y: 0, z: 0}
@@ -92,7 +91,7 @@ MonoBehaviour:
     m_Bits: 64
   pickupPosition: {fileID: 8879144238414003884}
   body: {fileID: 2678153539426280574}
-  stunDuration: 10
+  stunDuration: 3
   isStunned: 0
 --- !u!54 &470674171741066917
 Rigidbody:
@@ -306,6 +305,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3648878438836636929}
+  - {fileID: 8879144238414003884}
   m_Father: {fileID: 7927104339575673701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1680194394009545210
@@ -382,7 +382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8879144238414003884}
   m_Layer: 6
-  m_Name: objHolder
+  m_Name: RacconObjHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,11 +397,11 @@ Transform:
   m_GameObject: {fileID: 2778481988431966031}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.186, z: 0}
+  m_LocalPosition: {x: 0, y: 2.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7927104339575673701}
+  m_Father: {fileID: 8596322955222889134}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5911227695720951254
 GameObject:
@@ -539,8 +539,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 79.45703, y: 15.112976}
-  m_SizeDelta: {x: 158.9132, y: 30.227}
+  m_AnchoredPosition: {x: 79.457, y: 19.412}
+  m_SizeDelta: {x: 158.9132, y: 38.8244}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3314356338776610787
 CanvasRenderer:
@@ -599,8 +599,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

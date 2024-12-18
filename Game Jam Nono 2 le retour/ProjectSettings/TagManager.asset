@@ -8,6 +8,9 @@ TagManager:
   - WorldObjects
   - Eboueur
   - Raccoon
+  - SnowGround
+  - EboueurTrashZone
+  - RaccoonTrashZone
   layers:
   - Default
   - TransparentFX
