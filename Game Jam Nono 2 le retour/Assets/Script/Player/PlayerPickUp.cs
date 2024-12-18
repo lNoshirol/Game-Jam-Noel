@@ -175,7 +175,7 @@ public class PlayerPickUp : NetworkBehaviour
         if (IsThrowing)
         {
             PlayerController _pc = GetComponent<PlayerController>();
-            Vector3 LANCE = new Vector3(Mathf.Clamp(_pc.GetDirection().x * 200, -200, 200), 200, Mathf.Clamp(_pc.GetDirection().z * 200, -200, 200));
+            Vector3 LANCE = new Vector3(Mathf.Clamp(_pc.GetDirection().x * 100, -100, 100), 100, Mathf.Clamp(_pc.GetDirection().z * 100, -100, 100));
             obj.GetComponent<Rigidbody>().AddForce(LANCE);
         }
     }
