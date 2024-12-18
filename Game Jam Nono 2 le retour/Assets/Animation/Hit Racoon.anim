@@ -1876,7 +1876,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: "Bassin/Ventre/Os \xE9paule.R"
+    path: Bassin
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1888,7 +1888,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: "Bassin/Ventre/Os \xE9paule.R"
+    path: Bassin
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1900,7 +1900,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: "Bassin/Ventre/Os \xE9paule.R"
+    path: Bassin
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1912,7 +1912,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Bassin
+    path: "Bassin/Ventre/Os \xE9paule.R"
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1924,7 +1924,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Bassin
+    path: "Bassin/Ventre/Os \xE9paule.R"
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1936,7 +1936,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Bassin
+    path: "Bassin/Ventre/Os \xE9paule.R"
     classID: 4
     script: {fileID: 0}
     flags: 0
