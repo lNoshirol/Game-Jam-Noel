@@ -875,7 +875,7 @@ GameObject:
   - component: {fileID: 488734260}
   - component: {fileID: 488734265}
   - component: {fileID: 488734264}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TrashZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
