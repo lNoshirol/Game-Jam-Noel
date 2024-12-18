@@ -2,10 +2,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CountdownUI : MonoBehaviour
+public class LobbyCountdownUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _countdownText; // Reference to a UI Text element
-    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private GameLobbyManager _gameManager;
 
     private void Update()
     {

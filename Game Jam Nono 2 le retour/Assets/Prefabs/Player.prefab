@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8696755265219559373}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PickupPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4399129591532616689}
   - component: {fileID: 122786446802236540}
   - component: {fileID: 3170067701350259514}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 1153348706861922610}
   - component: {fileID: 6709985796019799039}
   - component: {fileID: 7255491734591667317}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Eboueur
   m_Icon: {fileID: 0}
@@ -192,9 +192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d41434181dd9e41877744bd4e3f0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 0
   _addedNetworkObject: {fileID: 4518036420622996078}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 4518036420622996078}
   walkingSpeed: 7.5
   runningSpeed: 11.5
   jumpSpeed: 8
@@ -220,7 +220,11 @@ MonoBehaviour:
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
   <PredictedOwner>k__BackingField: {fileID: 0}
-  NetworkBehaviours: []
+  NetworkBehaviours:
+  - {fileID: 6490988188554755073}
+  - {fileID: 8171939764389472719}
+  - {fileID: 2026769857000384570}
+  - {fileID: 6709985796019799039}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -231,7 +235,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedValusSet: 0
+  _initializedValusSet: 1
   NetworkObserver: {fileID: 0}
   _enablePrediction: 0
   _predictionType: 0
@@ -246,15 +250,15 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 65535
+  <PrefabId>k__BackingField: 2
   <SpawnableCollectionId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 7807759643866311769
   <SceneId>k__BackingField: 0
   SerializedTransformProperties:
     Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 0}
-    Scale: {x: 0, y: 0, z: 0}
-    IsValid: 0
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+    IsValid: 1
 --- !u!114 &8171939764389472719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,9 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac2f44aca0cd9241ba02636d3149826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 4518036420622996078}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 4518036420622996078}
   raycastDistance: 5
   pickupLayer:
     serializedVersion: 2
@@ -316,9 +320,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 4518036420622996078}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 4518036420622996078}
   _componentConfiguration: 0
   _synchronizeParent: 0
   _packing:
@@ -382,11 +386,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08fe41d2ddfa43449226e8e896f3acf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 4518036420622996078}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 4518036420622996078}
   points: 0
   ownerID: 0
+  score: 0
+  body: {fileID: 7376412135758860590}
+  racconMat: {fileID: 2100000, guid: f7a89a143bf65e54c8b4b38075854e20, type: 2}
+  eboueurMat: {fileID: 2100000, guid: 5107245e065813f47a488155b600daa2, type: 2}
 --- !u!114 &7255491734591667317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,7 +419,7 @@ GameObject:
   - component: {fileID: 297809647179357273}
   - component: {fileID: 2215447324121349592}
   - component: {fileID: 6963553870545041024}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2433216746597629793}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Raycast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +587,7 @@ GameObject:
   - component: {fileID: 7420695608024573510}
   - component: {fileID: 2734878251726962706}
   - component: {fileID: 1169703537673581180}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -686,7 +694,7 @@ GameObject:
   - component: {fileID: 7362018430042478790}
   - component: {fileID: 2174217769595131016}
   - component: {fileID: 197422556219737085}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
