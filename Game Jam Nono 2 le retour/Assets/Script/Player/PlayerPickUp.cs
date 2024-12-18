@@ -5,6 +5,7 @@ using FishNet.Object;
 using UnityEngine.Rendering;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using FishNet.Demo.AdditiveScenes;
 
 public class PlayerPickUp : NetworkBehaviour
 {
@@ -94,11 +95,11 @@ public class PlayerPickUp : NetworkBehaviour
         PlayerPickUp playerPickup = player.GetComponent<PlayerPickUp>();
         if (playerPickup != null)
         {
-            playerPickup.ApplyStun();
+            playerPickup.ApplyStun(player);
         }
     }
 
-    void ApplyStun()
+    void ApplyStun(GameObject player)
     {
         if (isStunned) return; // Prevent reapplying the stun
 
@@ -108,17 +109,19 @@ public class PlayerPickUp : NetworkBehaviour
             Drop(false); // Ensure the item is dropped when stunned
         }
 
-        StartCoroutine(StunRoutine());
+        StartCoroutine(StunRoutine(player));
     }
 
-    private IEnumerator StunRoutine()
+    private IEnumerator StunRoutine(GameObject player)
     {
         isStunned = true; // Block player actions
+        player.GetComponent<PlayerController>()._moveSpeed = 0;
         Debug.Log($"{gameObject.name} is stunned for {stunDuration} seconds!");
 
         yield return new WaitForSeconds(stunDuration);
 
         isStunned = false; // Re-enable player actions
+        player.GetComponent<PlayerController>()._moveSpeed = player.GetComponent<PlayerController>()._baseMoveSpeed;
         Debug.Log($"{gameObject.name} is no longer stunned!");
     }
 

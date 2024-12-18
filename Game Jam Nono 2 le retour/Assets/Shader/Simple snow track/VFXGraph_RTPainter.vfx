@@ -17,10 +17,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 555
+    x: 625
     y: -190
-    width: 810
-    height: 1341
+    width: 740
+    height: 1484
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Children:
   - {fileID: 8926484042661614646}
   - {fileID: 8926484042661614593}
-  m_UIPosition: {x: 941, y: 660}
+  m_UIPosition: {x: 941, y: 801}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -408,7 +408,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"time":0.0},{"color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.10000763088464737},{"alpha":1.0,"time":0.800000011920929},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.18946455419063569,"g":0.18946455419063569,"b":0.18946455419063569,"a":1.0},"time":0.0},{"color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":0.019607843831181527,"time":0.2235294133424759},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
     m_Space: 2147483647
   m_Property:
     name: Color
@@ -1270,7 +1270,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661614624}
     - outputSlot: {fileID: 8926484042661614641}
       inputSlot: {fileID: 8926484042661614643}
-    position: {x: 555, y: 359}
+    position: {x: 625, y: 433}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614641
@@ -1324,7 +1324,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 740, y: 339}
+  m_UIPosition: {x: 780, y: 417}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -1622,7 +1622,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661614650}
     - outputSlot: {fileID: 8926484042661614652}
       inputSlot: {fileID: 8926484042661614654}
-    position: {x: 636, y: 945}
+    position: {x: 635, y: 1075}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614652
@@ -1676,7 +1676,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 770, y: 932}
+  m_UIPosition: {x: 770, y: 1062}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -2049,8 +2049,8 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Position, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"position":{"x":0.0,"y":0.17886477708816529,"z":-1.2257418632507325}}'
-    m_Space: 1
+      m_SerializableObject: '{"position":{"x":0.0,"y":0.0,"z":0.0}}'
+    m_Space: 0
   m_Property:
     name: Position
     m_serializedType:
