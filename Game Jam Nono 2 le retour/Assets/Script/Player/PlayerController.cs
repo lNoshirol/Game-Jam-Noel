@@ -10,8 +10,8 @@ public class PlayerController : NetworkBehaviour
 
 
 
-    [SerializeField] float _baseMoveSpeed;
-    [SerializeField] float _moveSpeed;
+    public float _baseMoveSpeed;
+    public float _moveSpeed;
 
     [SerializeField] Vector3 _direction;
     [SerializeField] Vector3 _lookDirection;
