@@ -10,8 +10,8 @@ public class PlayerController : NetworkBehaviour
 
 
 
-    [SerializeField] float _baseMoveSpeed;
-    [SerializeField] float _moveSpeed;
+    public float _baseMoveSpeed;
+    public float _moveSpeed;
 
     [SerializeField] Vector3 _direction;
     [SerializeField] Vector3 _lookDirection;
@@ -20,6 +20,8 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] GameObject _cameraHolder;
 
     [SerializeField] bool _playerIsUsingJoystick;
+
+    [SerializeField] PlayerPickUp _playerPickup;
 
     public bool isPlayerOwner;
     public int Id;
@@ -34,6 +36,7 @@ public class PlayerController : NetworkBehaviour
             _playerCamera = Camera.main;
             _playerCamera.transform.SetParent(_cameraHolder.transform);
             _playerCamera.transform.position = _cameraHolder.transform.position;
+            _playerCamera.transform.rotation = _cameraHolder.transform.rotation;
         }
         else
         {
@@ -64,6 +67,7 @@ public class PlayerController : NetworkBehaviour
 
     public void OnMove(InputAction.CallbackContext callbackContext)
     {
+        if (_playerPickup.isStunned) return;
         var _valueRead = callbackContext.ReadValue<Vector2>();
         _direction = new Vector3(_valueRead.x, 0, _valueRead.y);
     }

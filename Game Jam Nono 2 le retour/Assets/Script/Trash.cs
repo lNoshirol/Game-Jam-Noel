@@ -1,7 +1,10 @@
+using TMPro;
 using UnityEngine;
 
 public class Trash : MonoBehaviour
 {
+    public TextMeshProUGUI text;
+
     private PlayerScore ownerPoints;
     public string ownerTag;
     // Set the owner of the trash (when picked up)

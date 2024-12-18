@@ -5,6 +5,7 @@ using FishNet.Object;
 using UnityEngine.Rendering;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using FishNet.Demo.AdditiveScenes;
 
 public class PlayerPickUp : NetworkBehaviour
 {
@@ -12,6 +13,10 @@ public class PlayerPickUp : NetworkBehaviour
     [SerializeField] LayerMask pickupLayer;
     [SerializeField] Transform pickupPosition;
     [SerializeField] GameObject body;
+
+    [SerializeField] float stunDuration = 10f; // Stun time in seconds
+
+    public bool isStunned = false; // To block actions during stun
 
     Camera cam;
     bool hasObjectInHand;
@@ -34,6 +39,7 @@ public class PlayerPickUp : NetworkBehaviour
         if (!callbackContext.started) { return; }
         
         Grab();
+
     }
 
     void Grab()
@@ -42,13 +48,27 @@ public class PlayerPickUp : NetworkBehaviour
         /*Physics.BoxCast(body.transform.forward, new Vector3(1, 1, 3), body.transform.forward);
         Physics.box*/
 
-
         if (Physics.Raycast(body.transform.position, body.transform.forward, out RaycastHit hit, raycastDistance, pickupLayer))
         {
+
+            PlayerPickUp hitPlayer = hit.transform.GetComponent<PlayerPickUp>();
+            if (hitPlayer != null)
+            {
+                Debug.Log($"Player {hitPlayer.name} is stunned!");
+                StunPlayerServer(hitPlayer.gameObject);
+                return;
+            }
+
             if (!hasObjectInHand)
             {
-                SetObjectInHandServer(hit.transform.gameObject, pickupPosition.position, pickupPosition.rotation, gameObject);
                 objInHand = hit.transform.gameObject;
+                Trash trash = objInHand.GetComponent<Trash>();
+                PlayerScore playerPoints = GetComponent<PlayerScore>();
+                trash.SetOwner(playerPoints);
+                trash.ownerTag = gameObject.tag;
+                Debug.Log($"Player {playerPoints.ownerID} picked up trash.");
+
+                SetObjectInHandServer(hit.transform.gameObject, pickupPosition.position, pickupPosition.rotation, gameObject);
                 hasObjectInHand = true;
             }
             else if (hasObjectInHand)
@@ -60,6 +80,48 @@ public class PlayerPickUp : NetworkBehaviour
                 hasObjectInHand = true;
             }
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void StunPlayerServer(GameObject player)
+    {
+        StunPlayerObservers(player);
+    }
+
+    [ObserversRpc]
+    void StunPlayerObservers(GameObject player)
+    {
+        PlayerPickUp playerPickup = player.GetComponent<PlayerPickUp>();
+        if (playerPickup != null)
+        {
+            playerPickup.ApplyStun(player);
+        }
+    }
+
+    void ApplyStun(GameObject player)
+    {
+        if (isStunned) return; // Prevent reapplying the stun
+
+        // Drop the object if the player has one in hand
+        if (hasObjectInHand)
+        {
+            Drop(false); // Ensure the item is dropped when stunned
+        }
+
+        StartCoroutine(StunRoutine(player));
+    }
+
+    private IEnumerator StunRoutine(GameObject player)
+    {
+        isStunned = true; // Block player actions
+        player.GetComponent<PlayerController>()._moveSpeed = 0;
+        Debug.Log($"{gameObject.name} is stunned for {stunDuration} seconds!");
+
+        yield return new WaitForSeconds(stunDuration);
+
+        isStunned = false; // Re-enable player actions
+        player.GetComponent<PlayerController>()._moveSpeed = player.GetComponent<PlayerController>()._baseMoveSpeed;
+        Debug.Log($"{gameObject.name} is no longer stunned!");
     }
 
     [ServerRpc(RequireOwnership = false)]

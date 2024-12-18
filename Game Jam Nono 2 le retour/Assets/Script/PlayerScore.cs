@@ -10,15 +10,10 @@ public class PlayerScore : NetworkBehaviour
     [SerializeField] GameObject body;
 
     // Example materials
-    public Material racconMat;
-    public Material eboueurMat;
+    public GameObject raccoonBody;
+    public GameObject eboueurBody;
+    
 
-    private void Start()
-    {
-        // Set colors manually
-        racconMat.color = Color.blue; // Blue
-        eboueurMat.color = Color.red; // Red
-    }
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -36,33 +31,35 @@ public class PlayerScore : NetworkBehaviour
     {
         // Example logic: alternate between teams
         string teamTag;
-        Color teamColor;
+        GameObject noRig;
 
         if (Owner.ClientId % 2 == 0)
         {
             teamTag = "Raccoon";
-            teamColor = racconMat.color; // Use raccoon material color
+            noRig = eboueurBody;
         }
         else
         {
             teamTag = "Eboueur";
-            teamColor = eboueurMat.color; // Use eboueur material color
+            noRig = raccoonBody;
         }
 
         // Assign tag and set material color on the server
         gameObject.tag = teamTag;
-        body.GetComponent<MeshRenderer>().material.color = teamColor;
+        noRig.SetActive(false);
+
+        //body.GetComponent<MeshRenderer>().material.color = teamColor;
 
         // Notify all clients to update their visuals
-        UpdateTeamOnClients(teamTag, teamColor);
+        UpdateTeamOnClients(teamTag, noRig);
     }
 
     [ObserversRpc]
-    private void UpdateTeamOnClients(string teamTag, Color teamColor)
+    private void UpdateTeamOnClients(string teamTag, GameObject noRig)
     {
         // Update the tag and material color on all clients
         gameObject.tag = teamTag;
-        body.GetComponent<MeshRenderer>().material.color = teamColor;
+        noRig.SetActive(false);
     }
 
     // Add points to the player's score

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerManager : NetworkBehaviour
 {
-    private static PlayerManager instance;
+    public static PlayerManager instance;
 
     // Dictionary to store players by ClientID
     private Dictionary<int, Player> _players = new Dictionary<int, Player>();
+    public List<Player> _playersList = new List<Player>();
+
 
     [SerializeField] Material racconMat;
     [SerializeField] Material eboueurMat;
@@ -24,7 +26,7 @@ public class PlayerManager : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-
+        
         if (!IsServerInitialized)
         {
             enabled = false; // Disable this script on clients since the server manages the logic
@@ -45,6 +47,8 @@ public class PlayerManager : NetworkBehaviour
                 ClientID = clientID,
                 Score = 0
             };
+
+            instance._playersList.Add(newPlayer);
 
             instance._players.Add(clientID, newPlayer);
             Debug.Log($"[Server] Player {clientID} initialized with a score of 0.");
@@ -99,7 +103,6 @@ public class PlayerManager : NetworkBehaviour
             player.tag = "Raccoon";
             player.GetComponent<MeshRenderer>().material = racconMat;
         }
-
         else
         {
             player.tag = "Eboueur";
@@ -109,7 +112,7 @@ public class PlayerManager : NetworkBehaviour
     }
 
     // Player data structure
-    private class Player
+    public class Player
     {
         public int ClientID;
         public int Score;
