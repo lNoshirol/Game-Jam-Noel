@@ -61,8 +61,14 @@ public class PlayerPickUp : NetworkBehaviour
 
             if (!hasObjectInHand)
             {
-                SetObjectInHandServer(hit.transform.gameObject, pickupPosition.position, pickupPosition.rotation, gameObject);
                 objInHand = hit.transform.gameObject;
+                Trash trash = objInHand.GetComponent<Trash>();
+                PlayerScore playerPoints = GetComponent<PlayerScore>();
+                trash.SetOwner(playerPoints);
+                trash.ownerTag = gameObject.tag;
+                Debug.Log($"Player {playerPoints.ownerID} picked up trash.");
+
+                SetObjectInHandServer(hit.transform.gameObject, pickupPosition.position, pickupPosition.rotation, gameObject);
                 hasObjectInHand = true;
             }
             else if (hasObjectInHand)

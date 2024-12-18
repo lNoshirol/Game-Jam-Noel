@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using FishNet.Object;
 
-public class PlayerPickup : NetworkBehaviour
+public class OldPlayerPickup : NetworkBehaviour
 {
     [SerializeField] float raycastDistance = 5f; // Raycast range
     [SerializeField] LayerMask pickupLayer;
@@ -48,7 +48,7 @@ public class PlayerPickup : NetworkBehaviour
             Debug.DrawRay(body.transform.position, body.transform.forward * raycastDistance, Color.red, 1f);
 
             // Check if the raycast hit another player
-            PlayerPickup hitPlayer = hit.transform.GetComponent<PlayerPickup>();
+            OldPlayerPickup hitPlayer = hit.transform.GetComponent<OldPlayerPickup>();
             if (hitPlayer != null)
             {
                 Debug.Log($"Player {hitPlayer.name} is stunned!");
@@ -85,7 +85,7 @@ public class PlayerPickup : NetworkBehaviour
     [ObserversRpc]
     void StunPlayerObservers(GameObject player)
     {
-        PlayerPickup playerPickup = player.GetComponent<PlayerPickup>();
+        OldPlayerPickup playerPickup = player.GetComponent<OldPlayerPickup>();
         if (playerPickup != null)
         {
             playerPickup.ApplyStun();
