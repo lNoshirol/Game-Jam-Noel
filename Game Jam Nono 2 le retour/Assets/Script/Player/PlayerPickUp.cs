@@ -48,7 +48,6 @@ public class PlayerPickUp : NetworkBehaviour
         /*Physics.BoxCast(body.transform.forward, new Vector3(1, 1, 3), body.transform.forward);
         Physics.box*/
 
-
         if (Physics.Raycast(body.transform.position, body.transform.forward, out RaycastHit hit, raycastDistance, pickupLayer))
         {
 
