@@ -8,7 +8,8 @@ public class PlayerManager : NetworkBehaviour
 
     // Dictionary to store players by ClientID
     private Dictionary<int, Player> _players = new Dictionary<int, Player>();
-    [SerializeField] private List<Player> _playersList = new List<Player>();
+    public List<Player> _playersList = new List<Player>();
+
 
     [SerializeField] Material racconMat;
     [SerializeField] Material eboueurMat;
@@ -111,7 +112,7 @@ public class PlayerManager : NetworkBehaviour
     }
 
     // Player data structure
-    private class Player
+    public class Player
     {
         public int ClientID;
         public int Score;

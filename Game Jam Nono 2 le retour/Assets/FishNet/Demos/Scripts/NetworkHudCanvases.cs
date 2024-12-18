@@ -9,6 +9,8 @@ namespace FishNet.Example
 
     public class NetworkHudCanvases : MonoBehaviour
     {
+
+
         #region Types.
         /// <summary>
         /// Ways the HUD will automatically start a connection.
@@ -210,7 +212,10 @@ namespace FishNet.Example
             if (_serverState != LocalConnectionState.Stopped)
                 _networkManager.ServerManager.StopConnection(true);
             else
+            {
                 _networkManager.ServerManager.StartConnection();
+            }
+
 
             DeselectButtons();
         }
