@@ -16,12 +16,21 @@ public class PlayerPickUp : NetworkBehaviour
 
     [SerializeField] float stunDuration = 10f; // Stun time in seconds
 
+    public Animator animatorEboueur;
+    public Animator animatorRaccoon;
+
     public bool isStunned = false; // To block actions during stun
 
     Camera cam;
     bool hasObjectInHand;
     GameObject objInHand;
     Transform objectHolder;
+
+    private void Start()
+    {
+        animatorEboueur = GetComponent<PlayerController>().animatorEboueur;
+        animatorRaccoon = GetComponent<PlayerController>().animatorRaccoon;
+    }
 
     public override void OnStartClient()
     {
@@ -70,6 +79,8 @@ public class PlayerPickUp : NetworkBehaviour
 
                 SetObjectInHandServer(hit.transform.gameObject, pickupPosition.position, pickupPosition.rotation, gameObject);
                 hasObjectInHand = true;
+                animatorEboueur.SetBool("HasGrab", true);
+                animatorRaccoon.SetBool("HasGrab", true);
             }
             else if (hasObjectInHand)
             {
@@ -78,6 +89,8 @@ public class PlayerPickUp : NetworkBehaviour
                 SetObjectInHandServer(hit.transform.gameObject, pickupPosition.position, pickupPosition.rotation, gameObject);
                 objInHand = hit.transform.gameObject;
                 hasObjectInHand = true;
+                animatorEboueur.SetBool("HasGrab", false);
+                animatorRaccoon.SetBool("HasGrab", false);
             }
         }
     }
@@ -115,6 +128,8 @@ public class PlayerPickUp : NetworkBehaviour
     {
         isStunned = true; // Block player actions
         player.GetComponent<PlayerController>()._moveSpeed = 0;
+        animatorEboueur.SetBool("IsHit", true);
+        animatorRaccoon.SetBool("IsHit", true);
         player.GetComponent<PlayerController>()._body.transform.Rotate(0, 0, 180);
         Debug.Log($"{gameObject.name} is stunned for {stunDuration} seconds!");
 
@@ -122,6 +137,8 @@ public class PlayerPickUp : NetworkBehaviour
 
         isStunned = false; // Re-enable player actions
         player.GetComponent<PlayerController>()._body.transform.Rotate(0, 0, 180);
+        animatorEboueur.SetBool("IsHit", false);
+        animatorRaccoon.SetBool("IsHit", false);
         player.GetComponent<PlayerController>()._moveSpeed = player.GetComponent<PlayerController>()._baseMoveSpeed;
         Debug.Log($"{gameObject.name} is no longer stunned!");
     }

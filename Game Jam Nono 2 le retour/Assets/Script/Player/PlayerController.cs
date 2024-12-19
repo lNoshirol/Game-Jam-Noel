@@ -8,7 +8,8 @@ public class PlayerController : NetworkBehaviour
 
     public GameObject _body;
 
-
+    public Animator animatorEboueur;
+    public Animator animatorRaccoon;
 
     public float _baseMoveSpeed;
     public float _moveSpeed;
@@ -68,8 +69,18 @@ public class PlayerController : NetworkBehaviour
     public void OnMove(InputAction.CallbackContext callbackContext)
     {
         if (_playerPickup.isStunned) return;
+
+        animatorEboueur.SetBool("IsRunning", true);
+        animatorRaccoon.SetBool("IsRunning", true);
+
         var _valueRead = callbackContext.ReadValue<Vector2>();
         _direction = new Vector3(_valueRead.x, 0, _valueRead.y);
+
+        if (callbackContext.canceled )
+        {
+            animatorEboueur.SetBool("IsRunning", false);
+            animatorRaccoon.SetBool("IsRunning", false);
+        }
     }
 
     private void Update()
