@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2531067369011775812
+--- !u!1001 &4144250135163611841
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -102,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fed3320324337494b9e99e41337bbd48, type: 3}
       propertyPath: m_Name
-      value: Eboueur Rig
+      value: Eboueur Rig 1
       objectReference: {fileID: 0}
     - target: {fileID: 2778050455552437884, guid: fed3320324337494b9e99e41337bbd48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -178,21 +178,21 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fed3320324337494b9e99e41337bbd48, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4552999850030769757}
+      addedObject: {fileID: 4167336636747706423}
   m_SourcePrefab: {fileID: 100100000, guid: fed3320324337494b9e99e41337bbd48, type: 3}
---- !u!1 &3450110864672863253 stripped
+--- !u!1 &3837696196341110672 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fed3320324337494b9e99e41337bbd48, type: 3}
-  m_PrefabInstance: {fileID: 2531067369011775812}
+  m_PrefabInstance: {fileID: 4144250135163611841}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &4552999850030769757
+--- !u!95 &4167336636747706423
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3450110864672863253}
+  m_GameObject: {fileID: 3837696196341110672}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c861352b923b6fe4fbb6a6fff5b41018, type: 2}
