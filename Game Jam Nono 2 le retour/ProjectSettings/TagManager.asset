@@ -11,6 +11,8 @@ TagManager:
   - SnowGround
   - EboueurTrashZone
   - RaccoonTrashZone
+  - RaccoonSpawn
+  - EboueurSpawn
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ public class PlayerPickUp : NetworkBehaviour
 {
     [SerializeField] float raycastDistance;
     [SerializeField] LayerMask pickupLayer;
-    [SerializeField] Transform pickupPosition;
+    [SerializeField] public Transform pickupPosition;
     [SerializeField] GameObject body;
 
     [SerializeField] float stunDuration = 10f; // Stun time in seconds
