@@ -6,7 +6,7 @@ using FishNet.Object;
 public class PlayerController : NetworkBehaviour
 {
 
-    [SerializeField] GameObject _jspCommentLappeler;
+    public GameObject _body;
 
 
 
@@ -83,9 +83,9 @@ public class PlayerController : NetworkBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
 
-            Vector3 _lookHere = _jspCommentLappeler.transform.position + _lookDirection;
+            Vector3 _lookHere = _body.transform.position + _lookDirection;
             _lookHere.y = transform.position.y;
-            _jspCommentLappeler.transform.LookAt(_lookHere);
+            _body.transform.LookAt(_lookHere);
         }
         else
         {
@@ -103,7 +103,7 @@ public class PlayerController : NetworkBehaviour
                     Vector3 _mouseLookDirection = hit.point;
                     _mouseLookDirection.y = transform.position.y;
                     _lookDirection = _mouseLookDirection;
-                    _jspCommentLappeler.transform.LookAt(_mouseLookDirection);
+                    _body.transform.LookAt(_mouseLookDirection);
                     _lookDirection -= transform.position;
                 }
             }
