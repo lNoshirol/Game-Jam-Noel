@@ -32,6 +32,7 @@ public class GameLobbyManager : NetworkBehaviour
         }
     }
 
+
     [Server]
     public void StartCountdown(float duration)
     {
@@ -53,8 +54,7 @@ public class GameLobbyManager : NetworkBehaviour
         {
             isInGame = true;
             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAh2.SetActive(true);
-            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAh.SetActive(true);
-            //gameManager.SetActive(true);
+            gameManager.SetActive(true);
             GetComponent<GameLobbyStarter>()._countDown = gameCountDownDuration;
             GetComponent<GameLobbyStarter>().Start();
             Debug.Log("Game Start !");
