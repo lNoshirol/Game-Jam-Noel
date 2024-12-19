@@ -1,26 +1,30 @@
 using UnityEngine;
-using TMPro;  // If you're using TextMeshPro, otherwise use UnityEngine.UI;
+using TMPro;
+using FishNet.Object;  // If you're using TextMeshPro, otherwise use UnityEngine.UI;
 
-public class PlayerUIManager : MonoBehaviour
+public class PlayerUIManager : NetworkBehaviour
 {
     [SerializeField] private TextMeshProUGUI playerScoreText;  // Reference to the UI Text component
-    private PlayerScore playerPoints;
+    private PlayerSetUp playerPoints;
+
+    public override void OnStartClient()
+    {
+        if (!base.IsOwner) // Ensure the UI is only active for the owning player
+        {
+            playerScoreText.gameObject.SetActive(false); // Hide the UI for other players
+        }
+    }
 
     void Start()
     {
 
-        //if (!IsOwner) // Ensure the UI is only active for the owning player
-        //{
-        //    gameObject.SetActive(false); // Hide the UI for other players
-        //}
-
-        playerPoints = GetComponent<PlayerScore>();
+        playerPoints = GetComponent<PlayerSetUp>();
         if (playerScoreText != null && playerPoints != null)
         {
             UpdateScoreText();
         }
         // Get the PlayerPoints script attached to the player
-        playerPoints = GetComponent<PlayerScore>();
+        playerPoints = GetComponent<PlayerSetUp>();
 
         if (playerScoreText != null && playerPoints != null)
         {

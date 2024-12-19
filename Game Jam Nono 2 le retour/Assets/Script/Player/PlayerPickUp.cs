@@ -5,12 +5,13 @@ using FishNet.Object;
 using UnityEngine.Rendering;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using FishNet.Demo.AdditiveScenes;
 
 public class PlayerPickUp : NetworkBehaviour
 {
     [SerializeField] float raycastDistance;
     [SerializeField] LayerMask pickupLayer;
-    [SerializeField] Transform pickupPosition;
+    [SerializeField] public Transform pickupPosition;
     [SerializeField] GameObject body;
 
     [SerializeField] float stunDuration = 10f; // Stun time in seconds
@@ -47,7 +48,6 @@ public class PlayerPickUp : NetworkBehaviour
         /*Physics.BoxCast(body.transform.forward, new Vector3(1, 1, 3), body.transform.forward);
         Physics.box*/
 
-
         if (Physics.Raycast(body.transform.position, body.transform.forward, out RaycastHit hit, raycastDistance, pickupLayer))
         {
 
@@ -63,7 +63,7 @@ public class PlayerPickUp : NetworkBehaviour
             {
                 objInHand = hit.transform.gameObject;
                 Trash trash = objInHand.GetComponent<Trash>();
-                PlayerScore playerPoints = GetComponent<PlayerScore>();
+                PlayerSetUp playerPoints = GetComponent<PlayerSetUp>();
                 trash.SetOwner(playerPoints);
                 trash.ownerTag = gameObject.tag;
                 Debug.Log($"Player {playerPoints.ownerID} picked up trash.");
@@ -94,11 +94,11 @@ public class PlayerPickUp : NetworkBehaviour
         PlayerPickUp playerPickup = player.GetComponent<PlayerPickUp>();
         if (playerPickup != null)
         {
-            playerPickup.ApplyStun();
+            playerPickup.ApplyStun(player);
         }
     }
 
-    void ApplyStun()
+    void ApplyStun(GameObject player)
     {
         if (isStunned) return; // Prevent reapplying the stun
 
@@ -108,17 +108,21 @@ public class PlayerPickUp : NetworkBehaviour
             Drop(false); // Ensure the item is dropped when stunned
         }
 
-        StartCoroutine(StunRoutine());
+        StartCoroutine(StunRoutine(player));
     }
 
-    private IEnumerator StunRoutine()
+    private IEnumerator StunRoutine(GameObject player)
     {
         isStunned = true; // Block player actions
+        player.GetComponent<PlayerController>()._moveSpeed = 0;
+        player.GetComponent<PlayerController>()._body.transform.Rotate(0, 0, 180);
         Debug.Log($"{gameObject.name} is stunned for {stunDuration} seconds!");
 
         yield return new WaitForSeconds(stunDuration);
 
         isStunned = false; // Re-enable player actions
+        player.GetComponent<PlayerController>()._body.transform.Rotate(0, 0, 180);
+        player.GetComponent<PlayerController>()._moveSpeed = player.GetComponent<PlayerController>()._baseMoveSpeed;
         Debug.Log($"{gameObject.name} is no longer stunned!");
     }
 
@@ -173,7 +177,7 @@ public class PlayerPickUp : NetworkBehaviour
         if (IsThrowing)
         {
             PlayerController _pc = GetComponent<PlayerController>();
-            Vector3 LANCE = new Vector3(Mathf.Clamp(_pc.GetDirection().x * 200, -200, 200), 200, Mathf.Clamp(_pc.GetDirection().z * 200, -200, 200));
+            Vector3 LANCE = new Vector3(Mathf.Clamp(_pc.GetDirection().x * 100, -100, 100), 100, Mathf.Clamp(_pc.GetDirection().z * 100, -100, 100));
             obj.GetComponent<Rigidbody>().AddForce(LANCE);
         }
     }
