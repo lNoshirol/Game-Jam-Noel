@@ -8,7 +8,7 @@ public class TrashSpawner : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints; // List of predefined spawn points for trash
     [SerializeField] private float spawnInterval = 20f; // Interval to spawn new trash
     private float spawnTimer;
-
+    
     void Start()
     {
         spawnTimer = spawnInterval;
