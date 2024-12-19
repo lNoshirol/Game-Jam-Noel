@@ -1,13 +1,19 @@
+using FishNet.Object;
 using TMPro;
 using UnityEngine;
 
-public class Trash : MonoBehaviour
+public class Trash : NetworkBehaviour
 {
     public TextMeshProUGUI text;
 
     private PlayerSetUp ownerPoints;
     public string ownerTag;
     // Set the owner of the trash (when picked up)
+
+    public override void OnStartServer()
+    {
+        gameObject.SetActive(false);
+    }
     public void SetOwner(PlayerSetUp playerPoints)
     {
         ownerPoints = playerPoints;

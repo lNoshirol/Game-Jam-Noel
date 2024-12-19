@@ -51,6 +51,7 @@ public class PlayerPickUp : NetworkBehaviour
 
     }
 
+
     void Grab()
     {
         // Draw the raycast in the scene view for debugging

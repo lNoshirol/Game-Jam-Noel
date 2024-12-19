@@ -1,14 +1,19 @@
+using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrashSpawner : MonoBehaviour
+public class TrashSpawner : NetworkBehaviour
 {
     [SerializeField] private List<GameObject> trashObjects; // List of trash objects in the level (inactive at start)
     [SerializeField] private List<Transform> spawnPoints; // List of predefined spawn points for trash
     [SerializeField] private float spawnInterval = 20f; // Interval to spawn new trash
     private float spawnTimer;
-    
+
+    public override void OnStartServer()
+    {
+        gameObject.SetActive(false);
+    }
     void Start()
     {
         spawnTimer = spawnInterval;

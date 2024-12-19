@@ -34,6 +34,7 @@ public class PlayerManager : NetworkBehaviour
         }
     }
 
+
     /// <summary>
     /// Ensures that the player is initialized when they first connect.
     /// </summary>

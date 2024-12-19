@@ -1,6 +1,7 @@
+using FishNet.Object;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameController : NetworkBehaviour
 {
     public TrashObjectPool trashPool; // Reference to the trash pool
     public float spawnInterval = 20f; // Time interval to spawn new trash (20 seconds)
